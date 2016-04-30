@@ -1,0 +1,56 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.maintable{
+  border: 1px solid black;
+}
+
+h1 {
+  text-align: center;
+}
+
+.signin {
+  width: 500px ;
+  margin-left: auto ;
+  margin-right: auto ;
+}
+
+a:hover { background-color: transparent; text-decoration: none; }
+
+.wrapper {
+  width:100%;
+  cellpadding: 0;
+  cellspacing: 0;
+  border: 0;
+  border-collapse: collapse;
+}
+
+.inner {
+  width:50%;
+}
+
+.content tr{
+  outline: thin solid;
+}
+
+.influencer {
+  border: 2px ;
+  border-style: solid;
+  border-color: #48a4ff;
+  color:#48a4ff;
+}
+
+.dismiss {
+  vertical-align:top;
+  text-align:right;
+}
+
+.details {
+  table-layout: fixed;
+}
+
+.sayhello {
+  margin: 0px 0px 0px 10px;
+}

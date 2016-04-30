@@ -1,0 +1,69 @@
+<%= stylesheet_link_tag "users.css.scss" %>
+<table class='wrapper'>
+  <tr>
+    <td  dir="ltr" align="right" class="inner">
+      <table class="content">
+        <thead>
+        <tr>
+          <td colspan="3">
+            <div><strong>NEW FOLLOWERS</strong></div>
+          </td>
+        </tr>
+        </thead>
+        <tbody>
+        <% @user.get_followers().each { |follower| %>
+        <tr>
+                <td valign="top"><img src="<%= follower[:profile_image_url] %>"  alt="Tweeter profile image" /></td>
+                <td>
+                  <div><strong><%= follower[:name] %></strong> @<%= follower[:screen_name] %></div>
+                  <div>
+                    <% if follower[:followers_count]>100 %>
+                        <span class="influencer">Influencer</span>
+                    <% end %>
+                    <span class="one">Following You</span>
+                  </div>
+                  <div><%= follower[:followers_count] %> followers</div>
+                  <div><span><%= link_to image_tag("Follow.png", border: 0,alt:"Follow"), users_path(:twitter_id => follower[:twitter_id],:screen_name => follower[:screen_name],:user => @user,:op => 'follow'), method: :put,user:@user %></span><span class="sayhello"><%= link_to image_tag("SayHi.png", border: 0,alt:"Say Hi" ), users_path(:screen_name => follower[:screen_name],:user => @user,:op => 'sayhello'), method: :put,user:@user %></span></div>
+                </td>
+                <td class="dismiss"><%= link_to image_tag("x_icon.png", border: 0,alt:"Dismiss"), users_path(:twitter_id => follower[:twitter_id],:user => @user), method: :delete,user:@user, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% } %>
+        </tbody>
+      </table>
+
+    </td>
+    <td width="50%" dir="ltr" align="left" class="full">
+
+      <table class="content">
+        <thead>
+        <tr>
+          <td colspan="3">
+            <div><strong>NEW UNFOLLOWERS</strong></div>
+          </td>
+        </tr>
+        </thead>
+        <tbody>
+        <% @user.get_unfollowers().each { |unfollower| %>
+        <tr>
+
+                <td valign="top"><img src="<%= unfollower[:profile_image_url] %>"  alt="Tweeter profile image" /></td>
+                <td>
+                  <div><strong><%= unfollower[:name] %></strong> @<%= unfollower[:screen_name] %></div>
+                  <div>
+                    <% if unfollower[:followers_count]>100 %>
+                        <span class="influencer">Influencer</span>
+                    <% end %>
+                    <span class="one">Unfollowing You</span>
+                  </div>
+                  <div><%= unfollower[:followers_count] %> followers</div>
+                  <div><a><%= link_to image_tag("UnFollow.png", border: 0,alt:"Unfollow"), users_path(:twitter_id => unfollower[:twitter_id],:screen_name => unfollower[:screen_name],:user => @user,:op => 'unfollow'), method: :put,user:@user %></a></div>
+                </td>
+                <td class="dismiss"><%= link_to image_tag("x_icon.png", border: 0,alt:"Dismiss") , users_path(:twitter_id => unfollower[:twitter_id],:user => @user), method: :delete,user:@user, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% } %>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</table>
+
